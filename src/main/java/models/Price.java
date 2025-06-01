@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_PRICES")
 @javax.persistence.NamedQueries({
@@ -18,67 +9,67 @@ import java.math.BigDecimal;
     @javax.persistence.NamedQuery(name = "Prices.findByPriId", query = "SELECT p FROM Prices p WHERE p.priId = :priId"),
     @javax.persistence.NamedQuery(name = "Prices.findByPriType", query = "SELECT p FROM Prices p WHERE p.priType = :priType"),
     @javax.persistence.NamedQuery(name = "Prices.findByPriAmount", query = "SELECT p FROM Prices p WHERE p.priAmount = :priAmount")})
-public class Prices implements Serializable {
+public class Price implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "PRI_ID")
-    private BigDecimal priId;
+    private Integer priId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "PRI_TYPE")
-    private short priType;
+    private Integer priType;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "PRI_AMOUNT")
-    private BigDecimal priAmount;
+    private Double priAmount;
     @javax.persistence.JoinColumn(name = "PRI_ROOM_ID", referencedColumnName = "ROOM_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Rooms priRoomId;
+    private Room priRoomId;
 
-    public Prices() {
+    public Price() {
     }
 
-    public Prices(BigDecimal priId) {
+    public Price(Integer priId) {
         this.priId = priId;
     }
 
-    public Prices(BigDecimal priId, short priType, BigDecimal priAmount) {
+    public Price(Integer priId, Integer priType, Double priAmount) {
         this.priId = priId;
         this.priType = priType;
         this.priAmount = priAmount;
     }
 
-    public BigDecimal getPriId() {
+    public Integer getPriId() {
         return priId;
     }
 
-    public void setPriId(BigDecimal priId) {
+    public void setPriId(Integer priId) {
         this.priId = priId;
     }
 
-    public short getPriType() {
+    public Integer getPriType() {
         return priType;
     }
 
-    public void setPriType(short priType) {
+    public void setPriType(Integer priType) {
         this.priType = priType;
     }
 
-    public BigDecimal getPriAmount() {
+    public Double getPriAmount() {
         return priAmount;
     }
 
-    public void setPriAmount(BigDecimal priAmount) {
+    public void setPriAmount(Double priAmount) {
         this.priAmount = priAmount;
     }
 
-    public Rooms getPriRoomId() {
+    public Room getPriRoomId() {
         return priRoomId;
     }
 
-    public void setPriRoomId(Rooms priRoomId) {
+    public void setPriRoomId(Room priRoomId) {
         this.priRoomId = priRoomId;
     }
 
@@ -91,15 +82,12 @@ public class Prices implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prices)) {
+        
+        if (!(object instanceof Price)) {
             return false;
         }
-        Prices other = (Prices) object;
-        if ((this.priId == null && other.priId != null) || (this.priId != null && !this.priId.equals(other.priId))) {
-            return false;
-        }
-        return true;
+        Price other = (Price) object;
+        return !((this.priId == null && other.priId != null) || (this.priId != null && !this.priId.equals(other.priId)));
     }
 
     @Override

@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_MUSEUM")
 @javax.persistence.NamedQueries({
@@ -32,7 +23,7 @@ public class Museum implements Serializable {
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "MUS_ID")
-    private BigDecimal musId;
+    private Integer musId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "MUS_NAME")
     private String musName;
@@ -53,16 +44,16 @@ public class Museum implements Serializable {
     @javax.persistence.Column(name = "MUS_TYPE")
     private String musType;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "roomMusId", fetch = javax.persistence.FetchType.EAGER)
-    private Collection<Rooms> roomsCollection;
+    private Collection<Room> roomsCollection;
 
     public Museum() {
     }
 
-    public Museum(BigDecimal musId) {
+    public Museum(Integer musId) {
         this.musId = musId;
     }
 
-    public Museum(BigDecimal musId, String musName, String musLocation, Date musFundationDate, String musDirectorName, String musWebsite, String musType) {
+    public Museum(Integer musId, String musName, String musLocation, Date musFundationDate, String musDirectorName, String musWebsite, String musType) {
         this.musId = musId;
         this.musName = musName;
         this.musLocation = musLocation;
@@ -72,11 +63,11 @@ public class Museum implements Serializable {
         this.musType = musType;
     }
 
-    public BigDecimal getMusId() {
+    public Integer getMusId() {
         return musId;
     }
 
-    public void setMusId(BigDecimal musId) {
+    public void setMusId(Integer musId) {
         this.musId = musId;
     }
 
@@ -128,11 +119,11 @@ public class Museum implements Serializable {
         this.musType = musType;
     }
 
-    public Collection<Rooms> getRoomsCollection() {
+    public Collection<Room> getRoomsCollection() {
         return roomsCollection;
     }
 
-    public void setRoomsCollection(Collection<Rooms> roomsCollection) {
+    public void setRoomsCollection(Collection<Room> roomsCollection) {
         this.roomsCollection = roomsCollection;
     }
 
@@ -150,10 +141,7 @@ public class Museum implements Serializable {
             return false;
         }
         Museum other = (Museum) object;
-        if ((this.musId == null && other.musId != null) || (this.musId != null && !this.musId.equals(other.musId))) {
-            return false;
-        }
-        return true;
+        return !((this.musId == null && other.musId != null) || (this.musId != null && !this.musId.equals(other.musId)));
     }
 
     @Override

@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_COLLECTIONS")
 @javax.persistence.NamedQueries({
@@ -22,12 +13,12 @@ import java.math.BigDecimal;
 public class Collection implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "CLT_ID")
-    private BigDecimal cltId;
+    private Integer cltId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "CLT_NAME")
     private String cltName;
@@ -38,30 +29,30 @@ public class Collection implements Serializable {
     @javax.persistence.Column(name = "CLT_DESCRIPTION")
     private String cltDescription;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "speCollectionId", fetch = javax.persistence.FetchType.EAGER)
-    private java.util.Collection<Species> speciesCollection;
+    private java.util.Collection<Specie> speciesCollection;
     @javax.persistence.JoinColumn(name = "CLT_ROOM_ID", referencedColumnName = "ROOM_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Rooms cltRoomId;
+    private Room cltRoomId;
 
     public Collection() {
     }
 
-    public Collection(BigDecimal cltId) {
+    public Collection(Integer cltId) {
         this.cltId = cltId;
     }
 
-    public Collection(BigDecimal cltId, String cltName, String cltEra, String cltDescription) {
+    public Collection(Integer cltId, String cltName, String cltEra, String cltDescription) {
         this.cltId = cltId;
         this.cltName = cltName;
         this.cltEra = cltEra;
         this.cltDescription = cltDescription;
     }
 
-    public BigDecimal getCltId() {
+    public Integer getCltId() {
         return cltId;
     }
 
-    public void setCltId(BigDecimal cltId) {
+    public void setCltId(Integer cltId) {
         this.cltId = cltId;
     }
 
@@ -89,19 +80,19 @@ public class Collection implements Serializable {
         this.cltDescription = cltDescription;
     }
 
-    public java.util.Collection<Species> getSpeciesCollection() {
+    public java.util.Collection<Specie> getSpeciesCollection() {
         return speciesCollection;
     }
 
-    public void setSpeciesCollection(java.util.Collection<Species> speciesCollection) {
+    public void setSpeciesCollection(java.util.Collection<Specie> speciesCollection) {
         this.speciesCollection = speciesCollection;
     }
 
-    public Rooms getCltRoomId() {
+    public Room getCltRoomId() {
         return cltRoomId;
     }
 
-    public void setCltRoomId(Rooms cltRoomId) {
+    public void setCltRoomId(Room cltRoomId) {
         this.cltRoomId = cltRoomId;
     }
 
@@ -114,15 +105,12 @@ public class Collection implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Collection)) {
             return false;
         }
         Collection other = (Collection) object;
-        if ((this.cltId == null && other.cltId != null) || (this.cltId != null && !this.cltId.equals(other.cltId))) {
-            return false;
-        }
-        return true;
+        return !((this.cltId == null && other.cltId != null) || (this.cltId != null && !this.cltId.equals(other.cltId)));
     }
 
     @Override

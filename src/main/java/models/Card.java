@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_CARDS")
 @javax.persistence.NamedQueries({
@@ -21,40 +13,40 @@ import java.math.BigDecimal;
 public class Card implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "CARD_ID")
-    private BigDecimal cardId;
+    private Integer cardId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "CARD_TYPE")
     private String cardType;
     @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "CARD_COMISION")
-    private BigDecimal cardComision;
+    @javax.persistence.Column(name = "CARD_COMMISSION")
+    private Double cardCommission;
     @javax.persistence.JoinColumn(name = "CARD_TICKET_ID", referencedColumnName = "TKT_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Tickets cardTicketId;
+    private Ticket cardTicketId;
 
     public Card() {
     }
 
-    public Card(BigDecimal cardId) {
+    public Card(Integer cardId) {
         this.cardId = cardId;
     }
 
-    public Card(BigDecimal cardId, String cardType, BigDecimal cardComision) {
+    public Card(Integer cardId, String cardType, Double cardComision) {
         this.cardId = cardId;
         this.cardType = cardType;
-        this.cardComision = cardComision;
+        this.cardCommission = cardComision;
     }
 
-    public BigDecimal getCardId() {
+    public Integer getCardId() {
         return cardId;
     }
 
-    public void setCardId(BigDecimal cardId) {
+    public void setCardId(Integer cardId) {
         this.cardId = cardId;
     }
 
@@ -66,19 +58,19 @@ public class Card implements Serializable {
         this.cardType = cardType;
     }
 
-    public BigDecimal getCardComision() {
-        return cardComision;
+    public Double getCardCommission() {
+        return cardCommission;
     }
 
-    public void setCardComision(BigDecimal cardComision) {
-        this.cardComision = cardComision;
+    public void setCardCommission(Double cardCommission) {
+        this.cardCommission = cardCommission;
     }
 
-    public Tickets getCardTicketId() {
+    public Ticket getCardTicketId() {
         return cardTicketId;
     }
 
-    public void setCardTicketId(Tickets cardTicketId) {
+    public void setCardTicketId(Ticket cardTicketId) {
         this.cardTicketId = cardTicketId;
     }
 
@@ -91,20 +83,16 @@ public class Card implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Card)) {
             return false;
         }
         Card other = (Card) object;
-        if ((this.cardId == null && other.cardId != null) || (this.cardId != null && !this.cardId.equals(other.cardId))) {
-            return false;
-        }
-        return true;
+        return !((this.cardId == null && other.cardId != null) || (this.cardId != null && !this.cardId.equals(other.cardId)));
     }
 
     @Override
     public String toString() {
         return "models.Card[ cardId=" + cardId + " ]";
     }
-    
 }

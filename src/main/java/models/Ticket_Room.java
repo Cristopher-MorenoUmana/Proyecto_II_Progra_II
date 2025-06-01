@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_TICKET_ROOMS")
 @javax.persistence.NamedQueries({
@@ -19,47 +10,47 @@ import java.math.BigDecimal;
 public class Ticket_Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKR_ID")
-    private BigDecimal tkrId;
+    private Integer tkrId;
     @javax.persistence.JoinColumn(name = "TKR_ROOM_ID", referencedColumnName = "ROOM_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Rooms tkrRoomId;
+    private Room tkrRoomId;
     @javax.persistence.JoinColumn(name = "TKR_TICKET_ID", referencedColumnName = "TKT_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Tickets tkrTicketId;
+    private Ticket tkrTicketId;
 
     public Ticket_Room() {
     }
 
-    public Ticket_Room(BigDecimal tkrId) {
+    public Ticket_Room(Integer tkrId) {
         this.tkrId = tkrId;
     }
 
-    public BigDecimal getTkrId() {
+    public Integer getTkrId() {
         return tkrId;
     }
 
-    public void setTkrId(BigDecimal tkrId) {
+    public void setTkrId(Integer tkrId) {
         this.tkrId = tkrId;
     }
 
-    public Rooms getTkrRoomId() {
+    public Room getTkrRoomId() {
         return tkrRoomId;
     }
 
-    public void setTkrRoomId(Rooms tkrRoomId) {
+    public void setTkrRoomId(Room tkrRoomId) {
         this.tkrRoomId = tkrRoomId;
     }
 
-    public Tickets getTkrTicketId() {
+    public Ticket getTkrTicketId() {
         return tkrTicketId;
     }
 
-    public void setTkrTicketId(Tickets tkrTicketId) {
+    public void setTkrTicketId(Ticket tkrTicketId) {
         this.tkrTicketId = tkrTicketId;
     }
 
@@ -72,15 +63,12 @@ public class Ticket_Room implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Ticket_Room)) {
             return false;
         }
         Ticket_Room other = (Ticket_Room) object;
-        if ((this.tkrId == null && other.tkrId != null) || (this.tkrId != null && !this.tkrId.equals(other.tkrId))) {
-            return false;
-        }
-        return true;
+        return !((this.tkrId == null && other.tkrId != null) || (this.tkrId != null && !this.tkrId.equals(other.tkrId)));
     }
 
     @Override

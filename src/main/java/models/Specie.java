@@ -1,17 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_SPECIES")
 @javax.persistence.NamedQueries({
@@ -24,15 +15,15 @@ import java.util.Date;
     @javax.persistence.NamedQuery(name = "Species.findBySpeSize", query = "SELECT s FROM Species s WHERE s.speSize = :speSize"),
     @javax.persistence.NamedQuery(name = "Species.findBySpeExtinctionDate", query = "SELECT s FROM Species s WHERE s.speExtinctionDate = :speExtinctionDate"),
     @javax.persistence.NamedQuery(name = "Species.findBySpeCharacteristics", query = "SELECT s FROM Species s WHERE s.speCharacteristics = :speCharacteristics")})
-public class Species implements Serializable {
+public class Specie implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "SPE_ID")
-    private BigDecimal speId;
+    private Integer speId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "SPE_SCIENTIST_NAME")
     private String speScientistName;
@@ -44,10 +35,10 @@ public class Species implements Serializable {
     private String speEra;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "SPE_WEIGHT")
-    private BigDecimal speWeight;
+    private Double speWeight;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "SPE_SIZE")
-    private BigDecimal speSize;
+    private Double speSize;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "SPE_EXTINCTION_DATE")
     @javax.persistence.Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -59,14 +50,14 @@ public class Species implements Serializable {
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
     private Collection speCollectionId;
 
-    public Species() {
+    public Specie() {
     }
 
-    public Species(BigDecimal speId) {
+    public Specie(Integer speId) {
         this.speId = speId;
     }
 
-    public Species(BigDecimal speId, String speScientistName, String speCommonName, String speEra, BigDecimal speWeight, BigDecimal speSize, Date speExtinctionDate, String speCharacteristics) {
+    public Specie(Integer speId, String speScientistName, String speCommonName, String speEra, Double speWeight, Double speSize, Date speExtinctionDate, String speCharacteristics) {
         this.speId = speId;
         this.speScientistName = speScientistName;
         this.speCommonName = speCommonName;
@@ -77,11 +68,11 @@ public class Species implements Serializable {
         this.speCharacteristics = speCharacteristics;
     }
 
-    public BigDecimal getSpeId() {
+    public Integer getSpeId() {
         return speId;
     }
 
-    public void setSpeId(BigDecimal speId) {
+    public void setSpeId(Integer speId) {
         this.speId = speId;
     }
 
@@ -109,19 +100,19 @@ public class Species implements Serializable {
         this.speEra = speEra;
     }
 
-    public BigDecimal getSpeWeight() {
+    public Double getSpeWeight() {
         return speWeight;
     }
 
-    public void setSpeWeight(BigDecimal speWeight) {
+    public void setSpeWeight(Double speWeight) {
         this.speWeight = speWeight;
     }
 
-    public BigDecimal getSpeSize() {
+    public Double getSpeSize() {
         return speSize;
     }
 
-    public void setSpeSize(BigDecimal speSize) {
+    public void setSpeSize(Double speSize) {
         this.speSize = speSize;
     }
 
@@ -158,15 +149,12 @@ public class Species implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Species)) {
+
+        if (!(object instanceof Specie)) {
             return false;
         }
-        Species other = (Species) object;
-        if ((this.speId == null && other.speId != null) || (this.speId != null && !this.speId.equals(other.speId))) {
-            return false;
-        }
-        return true;
+        Specie other = (Specie) object;
+        return !((this.speId == null && other.speId != null) || (this.speId != null && !this.speId.equals(other.speId)));
     }
 
     @Override

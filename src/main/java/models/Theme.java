@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_THEMES")
 @javax.persistence.NamedQueries({
@@ -19,15 +10,15 @@ import java.math.BigDecimal;
     @javax.persistence.NamedQuery(name = "hemes.findByThmName", query = "SELECT h FROM hemes h WHERE h.thmName = :thmName"),
     @javax.persistence.NamedQuery(name = "hemes.findByThmCharacteristics", query = "SELECT h FROM hemes h WHERE h.thmCharacteristics = :thmCharacteristics"),
     @javax.persistence.NamedQuery(name = "hemes.findByThmEra", query = "SELECT h FROM hemes h WHERE h.thmEra = :thmEra")})
-public class hemes implements Serializable {
+public class Theme implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+   
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "THM_ID")
-    private BigDecimal thmId;
+    private Integer thmId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "THM_NAME")
     private String thmName;
@@ -39,27 +30,27 @@ public class hemes implements Serializable {
     private String thmEra;
     @javax.persistence.JoinColumn(name = "THM_ROOM_ID", referencedColumnName = "ROOM_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
-    private Rooms thmRoomId;
+    private Room thmRoomId;
 
-    public hemes() {
+    public Theme() {
     }
 
-    public hemes(BigDecimal thmId) {
+    public Theme(Integer thmId) {
         this.thmId = thmId;
     }
 
-    public hemes(BigDecimal thmId, String thmName, String thmCharacteristics, String thmEra) {
+    public Theme(Integer thmId, String thmName, String thmCharacteristics, String thmEra) {
         this.thmId = thmId;
         this.thmName = thmName;
         this.thmCharacteristics = thmCharacteristics;
         this.thmEra = thmEra;
     }
 
-    public BigDecimal getThmId() {
+    public Integer getThmId() {
         return thmId;
     }
 
-    public void setThmId(BigDecimal thmId) {
+    public void setThmId(Integer thmId) {
         this.thmId = thmId;
     }
 
@@ -87,11 +78,11 @@ public class hemes implements Serializable {
         this.thmEra = thmEra;
     }
 
-    public Rooms getThmRoomId() {
+    public Room getThmRoomId() {
         return thmRoomId;
     }
 
-    public void setThmRoomId(Rooms thmRoomId) {
+    public void setThmRoomId(Room thmRoomId) {
         this.thmRoomId = thmRoomId;
     }
 
@@ -104,15 +95,12 @@ public class hemes implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof hemes)) {
+        
+        if (!(object instanceof Theme)) {
             return false;
         }
-        hemes other = (hemes) object;
-        if ((this.thmId == null && other.thmId != null) || (this.thmId != null && !this.thmId.equals(other.thmId))) {
-            return false;
-        }
-        return true;
+        Theme other = (Theme) object;
+        return !((this.thmId == null && other.thmId != null) || (this.thmId != null && !this.thmId.equals(other.thmId)));
     }
 
     @Override

@@ -1,17 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_ROOMS")
 @javax.persistence.NamedQueries({
@@ -20,15 +11,15 @@ import java.util.Collection;
     @javax.persistence.NamedQuery(name = "Rooms.findByRoomName", query = "SELECT r FROM Rooms r WHERE r.roomName = :roomName"),
     @javax.persistence.NamedQuery(name = "Rooms.findByRoomDescription", query = "SELECT r FROM Rooms r WHERE r.roomDescription = :roomDescription"),
     @javax.persistence.NamedQuery(name = "Rooms.findByRoomType", query = "SELECT r FROM Rooms r WHERE r.roomType = :roomType")})
-public class Rooms implements Serializable {
+public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "ROOM_ID")
-    private BigDecimal roomId;
+    private Integer roomId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "ROOM_NAME")
     private String roomName;
@@ -37,38 +28,38 @@ public class Rooms implements Serializable {
     private String roomDescription;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "ROOM_TYPE")
-    private long roomType;
+    private Integer roomType;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "cltRoomId", fetch = javax.persistence.FetchType.EAGER)
     private Collection<models.Collection> collectionCollection;
     @javax.persistence.JoinColumn(name = "ROOM_MUS_ID", referencedColumnName = "MUS_ID")
     @javax.persistence.ManyToOne(optional = false, fetch = javax.persistence.FetchType.EAGER)
     private Museum roomMusId;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "priRoomId", fetch = javax.persistence.FetchType.EAGER)
-    private Collection<Prices> pricesCollection;
+    private Collection<Price> pricesCollection;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "tkrRoomId", fetch = javax.persistence.FetchType.EAGER)
     private Collection<Ticket_Room> ticketRoomCollection;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "thmRoomId", fetch = javax.persistence.FetchType.EAGER)
-    private Collection<hemes> hemesCollection;
+    private Collection<Theme> hemesCollection;
 
-    public Rooms() {
+    public Room() {
     }
 
-    public Rooms(BigDecimal roomId) {
+    public Room(Integer roomId) {
         this.roomId = roomId;
     }
 
-    public Rooms(BigDecimal roomId, String roomName, String roomDescription, long roomType) {
+    public Room(Integer roomId, String roomName, String roomDescription, Integer roomType) {
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomDescription = roomDescription;
         this.roomType = roomType;
     }
 
-    public BigDecimal getRoomId() {
+    public Integer getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(BigDecimal roomId) {
+    public void setRoomId(Integer roomId) {
         this.roomId = roomId;
     }
 
@@ -88,11 +79,11 @@ public class Rooms implements Serializable {
         this.roomDescription = roomDescription;
     }
 
-    public long getRoomType() {
+    public Integer getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(long roomType) {
+    public void setRoomType(Integer roomType) {
         this.roomType = roomType;
     }
 
@@ -112,11 +103,11 @@ public class Rooms implements Serializable {
         this.roomMusId = roomMusId;
     }
 
-    public Collection<Prices> getPricesCollection() {
+    public Collection<Price> getPricesCollection() {
         return pricesCollection;
     }
 
-    public void setPricesCollection(Collection<Prices> pricesCollection) {
+    public void setPricesCollection(Collection<Price> pricesCollection) {
         this.pricesCollection = pricesCollection;
     }
 
@@ -128,11 +119,11 @@ public class Rooms implements Serializable {
         this.ticketRoomCollection = ticketRoomCollection;
     }
 
-    public Collection<hemes> getHemesCollection() {
+    public Collection<Theme> getHemesCollection() {
         return hemesCollection;
     }
 
-    public void setHemesCollection(Collection<hemes> hemesCollection) {
+    public void setHemesCollection(Collection<Theme> hemesCollection) {
         this.hemesCollection = hemesCollection;
     }
 
@@ -145,15 +136,11 @@ public class Rooms implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rooms)) {
+        if (!(object instanceof Room)) {
             return false;
         }
-        Rooms other = (Rooms) object;
-        if ((this.roomId == null && other.roomId != null) || (this.roomId != null && !this.roomId.equals(other.roomId))) {
-            return false;
-        }
-        return true;
+        Room other = (Room) object;
+        return !((this.roomId == null && other.roomId != null) || (this.roomId != null && !this.roomId.equals(other.roomId)));
     }
 
     @Override

@@ -1,19 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- *
- * @author neynm
- */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "TBL_TICKETS")
 @javax.persistence.NamedQueries({
@@ -24,15 +14,15 @@ import java.util.Date;
     @javax.persistence.NamedQuery(name = "Tickets.findByTktTotalPrice", query = "SELECT t FROM Tickets t WHERE t.tktTotalPrice = :tktTotalPrice"),
     @javax.persistence.NamedQuery(name = "Tickets.findByTktPayState", query = "SELECT t FROM Tickets t WHERE t.tktPayState = :tktPayState"),
     @javax.persistence.NamedQuery(name = "Tickets.findByTktTicketsQuantity", query = "SELECT t FROM Tickets t WHERE t.tktTicketsQuantity = :tktTicketsQuantity")})
-public class Tickets implements Serializable {
+public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKT_ID")
-    private BigDecimal tktId;
+    private Integer tktId;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKT_DAY")
     @javax.persistence.Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -42,26 +32,26 @@ public class Tickets implements Serializable {
     private String tktRooms;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKT_TOTAL_PRICE")
-    private BigDecimal tktTotalPrice;
+    private Double tktTotalPrice;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKT_PAY_STATE")
-    private short tktPayState;
+    private Integer tktPayState;
     @javax.persistence.Basic(optional = false)
     @javax.persistence.Column(name = "TKT_TICKETS_QUANTITY")
-    private BigInteger tktTicketsQuantity;
+    private Integer tktTicketsQuantity;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "cardTicketId", fetch = javax.persistence.FetchType.EAGER)
     private Collection<Card> cardCollection;
     @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "tkrTicketId", fetch = javax.persistence.FetchType.EAGER)
     private Collection<Ticket_Room> ticketRoomCollection;
 
-    public Tickets() {
+    public Ticket() {
     }
 
-    public Tickets(BigDecimal tktId) {
+    public Ticket(Integer tktId) {
         this.tktId = tktId;
     }
 
-    public Tickets(BigDecimal tktId, Date tktDay, String tktRooms, BigDecimal tktTotalPrice, short tktPayState, BigInteger tktTicketsQuantity) {
+    public Ticket(Integer tktId, Date tktDay, String tktRooms, Double tktTotalPrice, Integer tktPayState, Integer tktTicketsQuantity) {
         this.tktId = tktId;
         this.tktDay = tktDay;
         this.tktRooms = tktRooms;
@@ -70,11 +60,11 @@ public class Tickets implements Serializable {
         this.tktTicketsQuantity = tktTicketsQuantity;
     }
 
-    public BigDecimal getTktId() {
+    public Integer getTktId() {
         return tktId;
     }
 
-    public void setTktId(BigDecimal tktId) {
+    public void setTktId(Integer tktId) {
         this.tktId = tktId;
     }
 
@@ -94,27 +84,27 @@ public class Tickets implements Serializable {
         this.tktRooms = tktRooms;
     }
 
-    public BigDecimal getTktTotalPrice() {
+    public Double getTktTotalPrice() {
         return tktTotalPrice;
     }
 
-    public void setTktTotalPrice(BigDecimal tktTotalPrice) {
+    public void setTktTotalPrice(Double tktTotalPrice) {
         this.tktTotalPrice = tktTotalPrice;
     }
 
-    public short getTktPayState() {
+    public Integer getTktPayState() {
         return tktPayState;
     }
 
-    public void setTktPayState(short tktPayState) {
+    public void setTktPayState(Integer tktPayState) {
         this.tktPayState = tktPayState;
     }
 
-    public BigInteger getTktTicketsQuantity() {
+    public Integer getTktTicketsQuantity() {
         return tktTicketsQuantity;
     }
 
-    public void setTktTicketsQuantity(BigInteger tktTicketsQuantity) {
+    public void setTktTicketsQuantity(Integer tktTicketsQuantity) {
         this.tktTicketsQuantity = tktTicketsQuantity;
     }
 
@@ -143,15 +133,12 @@ public class Tickets implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tickets)) {
+  
+        if (!(object instanceof Ticket)) {
             return false;
         }
-        Tickets other = (Tickets) object;
-        if ((this.tktId == null && other.tktId != null) || (this.tktId != null && !this.tktId.equals(other.tktId))) {
-            return false;
-        }
-        return true;
+        Ticket other = (Ticket) object;
+        return !((this.tktId == null && other.tktId != null) || (this.tktId != null && !this.tktId.equals(other.tktId)));
     }
 
     @Override
