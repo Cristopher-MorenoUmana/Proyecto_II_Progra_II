@@ -27,7 +27,7 @@ public class SpecieDao {
             return new Response('S', "", "", "Especies", species);
         } catch (Exception ex) {
 
-            Logger.getLogger(SpecieDao.class.getName()).log(Level.SEVERE, "Error al obtener las colecciones", ex);
+            Logger.getLogger(SpecieDao.class.getName()).log(Level.SEVERE, "Error al obtener las especies", ex);
 
             return new Response('N', "Error al obtener las especies", "getSpecies");
         }

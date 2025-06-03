@@ -27,7 +27,7 @@ public class MuseumDao {
             return new Response('S', "", "", "Museos", museums);
         } catch (Exception ex) {
 
-            Logger.getLogger(MuseumDao.class.getName()).log(Level.SEVERE, "Error al obtener las colecciones", ex);
+            Logger.getLogger(MuseumDao.class.getName()).log(Level.SEVERE, "Error al obtener los museos", ex);
 
             return new Response('N', "Error al obtener los museos", "getMuseums");
         }

@@ -27,7 +27,7 @@ public class Ticket_RoomDao {
             return new Response('S', "", "", "Tiquetes", ticket_Rooms);
         } catch (Exception ex) {
 
-            Logger.getLogger(Ticket_RoomDao.class.getName()).log(Level.SEVERE, "Error al obtener las colecciones", ex);
+            Logger.getLogger(Ticket_RoomDao.class.getName()).log(Level.SEVERE, "Error al obtener las tiquetes", ex);
 
             return new Response('N', "Error al obtener los tiquetes", "getTicket_Rooms");
         }

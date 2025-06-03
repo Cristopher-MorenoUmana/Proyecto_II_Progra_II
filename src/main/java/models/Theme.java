@@ -45,7 +45,20 @@ public class Theme implements Serializable {
         this.thmCharacteristics = thmCharacteristics;
         this.thmEra = thmEra;
     }
+    
+    public Theme(ThemeDto pThemeDto) {
+        
+        updateTheme(pThemeDto);
+    }
 
+    public final void updateTheme(ThemeDto pThemeDto){
+     
+        this.thmCharacteristics = pThemeDto.getCharacteristics();
+        this.thmEra = pThemeDto.getEra();
+        this.thmName = pThemeDto.getName();
+        this.thmRoomId = pThemeDto.getRoom();
+    }
+    
     public Integer getThmId() {
         return thmId;
     }

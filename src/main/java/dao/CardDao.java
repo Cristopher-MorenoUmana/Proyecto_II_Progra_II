@@ -70,7 +70,7 @@ public class CardDao {
 
             if (cardDto.getID() == null || cardDto.getID() <= 0) {
 
-                return new Response('N', "La tarjeta no existe", "updateCard ConflictException");
+                return new Response('N', "La tarjeta no existe", "updateCardInDb ConflictException");
             }
 
             et = em.getTransaction();

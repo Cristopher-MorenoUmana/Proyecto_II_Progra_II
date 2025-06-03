@@ -27,7 +27,7 @@ public class RoomDao {
             return new Response('S', "", "", "Salas", rooms);
         } catch (Exception ex) {
 
-            Logger.getLogger(RoomDao.class.getName()).log(Level.SEVERE, "Error al obtener las colecciones", ex);
+            Logger.getLogger(RoomDao.class.getName()).log(Level.SEVERE, "Error al obtener las salas", ex);
 
             return new Response('N', "Error al obtener las salas", "getRooms");
         }
