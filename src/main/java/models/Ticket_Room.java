@@ -30,6 +30,17 @@ public class Ticket_Room implements Serializable {
         this.tkrId = tkrId;
     }
 
+    public Ticket_Room(Ticket_RoomDto pTicket_RoomDto){
+        
+        updateTicket_Room(pTicket_RoomDto);
+    }
+    
+    public final void updateTicket_Room(Ticket_RoomDto pTicket_RoomDto){
+        
+     this.tkrRoomId = pTicket_RoomDto.getRoom();
+     this.tkrTicketId = pTicket_RoomDto.getTicket();
+    }
+    
     public Integer getTkrId() {
         return tkrId;
     }

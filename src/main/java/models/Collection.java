@@ -48,6 +48,17 @@ public class Collection implements Serializable {
         this.cltDescription = cltDescription;
     }
 
+    public Collection(CollectionDto pCollectionDto) {
+        updateCollection(pCollectionDto);
+    }
+    
+    public final void updateCollection(CollectionDto pCollectionDto) {
+        
+        this.cltDescription = pCollectionDto.getDescription();
+        this.cltEra = pCollectionDto.getEra();
+        this.cltName = pCollectionDto.getName();
+        this.cltRoomId = pCollectionDto.getRoom();
+    }
     public Integer getCltId() {
         return cltId;
     }

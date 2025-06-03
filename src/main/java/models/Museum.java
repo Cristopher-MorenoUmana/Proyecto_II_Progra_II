@@ -18,7 +18,7 @@ import java.util.Date;
 public class Museum implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @javax.persistence.Id
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @javax.persistence.Basic(optional = false)
@@ -63,6 +63,21 @@ public class Museum implements Serializable {
         this.musType = musType;
     }
 
+    public Museum(MuseumDto pMuseumDto) {
+         
+        updateMuseum(pMuseumDto);
+    }
+    
+    public final void updateMuseum(MuseumDto pMuseumDto) {
+        
+        this.musDirectorName = pMuseumDto.getDirectorName();
+        this.musFundationDate = pMuseumDto.getFundationDate();
+        this.musLocation = pMuseumDto.getLocation();
+        this.musName = pMuseumDto.getName();
+        this.musType = pMuseumDto.getType();
+        this.musWebsite = pMuseumDto.getWebSite();
+    }
+    
     public Integer getMusId() {
         return musId;
     }
@@ -136,7 +151,7 @@ public class Museum implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Museum)) {
             return false;
         }

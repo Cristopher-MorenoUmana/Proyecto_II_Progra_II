@@ -60,6 +60,19 @@ public class Ticket implements Serializable {
         this.tktTicketsQuantity = tktTicketsQuantity;
     }
 
+    public Ticket(TicketDto pTicketDto){
+        
+        updateTicket(pTicketDto);
+    }
+    
+    public final void updateTicket(TicketDto pTicketDto){
+        
+        this.tktDay = pTicketDto.getDay();
+        this.tktRooms = pTicketDto.getRooms();
+        this.tktTicketsQuantity = Integer.valueOf(pTicketDto.getQuantity());
+        this.tktPayState = Integer.valueOf(pTicketDto.getPayState());
+        this.tktTotalPrice = Double.valueOf(pTicketDto.getTotalPrice());
+    }
     public Integer getTktId() {
         return tktId;
     }

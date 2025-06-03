@@ -55,6 +55,19 @@ public class Room implements Serializable {
         this.roomType = roomType;
     }
 
+    public Room(RoomDto pRoomDto){
+        
+        updateRoom(pRoomDto);
+    }
+    
+    public final void updateRoom(RoomDto pRoomDto) {
+        
+        this.roomDescription = pRoomDto.getDescription();
+        this.roomMusId = pRoomDto.getMuseum();
+        this.roomName = pRoomDto.getName();
+        this.roomType = Integer.valueOf(pRoomDto.getType());
+    }
+    
     public Integer getRoomId() {
         return roomId;
     }

@@ -41,6 +41,17 @@ public class Price implements Serializable {
         this.priAmount = priAmount;
     }
 
+    public Price(PriceDto pPriceDto) {
+        
+        updatePrice(pPriceDto);
+    }
+    public final void updatePrice(PriceDto pPriceDto) {
+        
+        this.priAmount = Double.valueOf(pPriceDto.getAmount());
+        this.priRoomId = pPriceDto.getRoom();
+        this.priType = Integer.valueOf(pPriceDto.getType());
+    }
+    
     public Integer getPriId() {
         return priId;
     }

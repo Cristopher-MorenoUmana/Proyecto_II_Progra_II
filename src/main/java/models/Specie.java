@@ -68,6 +68,22 @@ public class Specie implements Serializable {
         this.speCharacteristics = speCharacteristics;
     }
 
+    public Specie(SpecieDto pSpecieDto){
+        
+        updateSpecie(pSpecieDto);
+    }
+    
+    public final void updateSpecie(SpecieDto pSpecieDto){
+        
+        this.speCommonName = pSpecieDto.getCommonName();
+        this.speScientistName = pSpecieDto.getScientistName();
+        this.speEra = pSpecieDto.getEra();
+        this.speSize = Double.valueOf(pSpecieDto.getSize());
+        this.speWeight = Double.valueOf(pSpecieDto.getWeight());
+        this.speExtinctionDate = pSpecieDto.getExtinctionDate();
+        this.speCharacteristics = pSpecieDto.getCharacteristics();
+    }
+    
     public Integer getSpeId() {
         return speId;
     }

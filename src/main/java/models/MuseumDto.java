@@ -57,7 +57,11 @@ public class MuseumDto {
     public String getName() {
         return this.name.get();
     }
-
+    
+    public Date getFundationDate() {
+        return this.fundationDate.get();
+    }
+    
     public String getLocation() {
         return this.location.get();
     }

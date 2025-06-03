@@ -42,6 +42,17 @@ public class Card implements Serializable {
         this.cardCommission = cardComision;
     }
 
+    public Card(CardDto cardDto) {
+        updateCard(cardDto);
+    }
+
+    public final void updateCard(CardDto cardDto) {
+        
+        this.cardType = cardDto.getType();
+        this.cardTicketId = cardDto.getTicketId();
+        this.cardCommission = Double.valueOf(cardDto.getCommission());
+    }
+
     public Integer getCardId() {
         return cardId;
     }
